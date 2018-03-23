@@ -32,7 +32,9 @@ class MainComponent extends Component {
         super(props)
         this.state = {
             featured : [], 
-            notice : []
+            notice : [],
+            bookModalExpanded: false,
+            loginModalExpanded: false
         }
     }
 
