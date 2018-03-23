@@ -6,7 +6,50 @@ import MainFeatured from './MainFeatured';
 import MainAlert from './MainAlert';
 import './main.css'
 
+const Featured = function(title, category) {
+
+    if(!this instanceof Featured) {
+        return new Featured(title, category);
+    }
+
+    this.title = title;
+    this.category = category;
+}
+
+const Notice = function(headline, color) {
+
+    if(!this instanceof Notice) {
+        return new Notice(headline, color)
+    }
+
+    this.headline = headline;
+    this.color = color
+}
+
 class MainComponent extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            featured : [], 
+            notice : []
+        }
+    }
+
+    componentWillMount () {
+        console.log('fuck you world!')
+
+        this.setState({
+            featured: [new Featured('JK의 책장', 'featured-article'), new Featured('포비의 책장', 'featured-article')
+        ,new Featured('크롱의 책장', 'featured-article'), new Featured('호눅스의 책장', 'featured-article')],
+            notice: [new Notice('독서하기 좋은 계절입니다. <strong>책을 읽읍시다!</strong>', "warning")]
+        })
+    }
+
+    componentDidMount () {
+        console.log(this.state.featured);
+    }
+
     render() {
         return (
             <div className="main">
@@ -19,8 +62,8 @@ class MainComponent extends Component {
                         <h3 className="main-text">여러분의 개발을 도와주는 많은 책들이 준비되어 있습니다.</h3>
                     </div>
                 </div>
-                <MainFeatured/>
-                <MainAlert/>
+                <MainFeatured featured={this.state.featured}/>
+                <MainAlert alerts={this.state.notice}/>
                 <div className="container-fluid default-footer">
                     <MainFooter/>
                 </div>
