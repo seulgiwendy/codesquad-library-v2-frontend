@@ -4,7 +4,9 @@ import MainJumbotron from './main-jumbo/MainJumbotron';
 import MainFooter from './MainFooter';
 import MainFeatured from './MainFeatured';
 import MainAlert from './MainAlert';
-import { Modal } from 'react-bootstrap';
+import BookModal from './book-modal/BookModal';
+import { Modal, Form, FormGroup, ControlLabel, Button, FormControl, InputGroup } from 'react-bootstrap';
+import request from 'superagent';
 import './main.css'
 import connect from 'react-redux/lib/connect/connect';
 import * as modalCloseActions from '../reducers/actions';
@@ -29,6 +31,8 @@ const Notice = function(headline, color) {
     this.color = color
 }
 
+
+
 class MainComponent extends Component {
 
     constructor(props) {
@@ -36,9 +40,11 @@ class MainComponent extends Component {
         this.state = {
             featured : [], 
             notice : [],
+            newBookIsbn: 0,
             bookModalExpanded: this.props.bookModalExpanded,
             loginModalExpanded: false
         }
+
     }
 
     componentWillMount () {
@@ -50,6 +56,7 @@ class MainComponent extends Component {
             notice: [new Notice('독서하기 좋은 계절입니다. <strong>책을 읽읍시다!</strong>', "warning")]
         })
     }
+    
 
     componentDidMount () {
         console.log(this.state.featured);
@@ -77,19 +84,8 @@ class MainComponent extends Component {
                 <div className="container-fluid default-footer">
                     <MainFooter/>
                 </div>
-                <Modal show={this.props.bookModalExpanded} onHide={this.props.onBookModalClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Shit!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h4>shit! fuck!</h4>
-                        <p>Redux is too difficult!</p>
-                    </Modal.Body>
-
-                </Modal>
-                
+                <BookModal bookModalExpanded={this.props.bookModalExpanded} onBookModalClose={this.props.onBookModalClose}/>
             </div>
-        
         )
     }
 }

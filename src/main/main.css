@@ -103,4 +103,7 @@
 .modal-open[style] {
     padding-right: 0px !important;
   }
-  
+
+  .modal-body-isbnform {
+      width: 60%;
+  }
