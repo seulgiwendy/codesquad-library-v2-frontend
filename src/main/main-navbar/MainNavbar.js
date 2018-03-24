@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {Nav, Navbar, NavItem, Button,  Glyphicon, Modal, } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
+import * as buttonActions from '../../reducers/actions'
 
 
 class MainNavbar extends Component {
@@ -42,7 +42,7 @@ class MainNavbar extends Component {
                     </Navbar.Header>
                     <Nav className="navbar-letter">
                             <NavItem id = "navbar-menu"> <Link to={'/search'} id="navbar-menu">도서검색 </Link></NavItem>
-                            <NavItem id = "navbar-menu" activehref="#" onClick={this.handleBookSubmitonClick}> 도서관리 </NavItem>
+                            <NavItem id = "navbar-menu" activehref="#" onClick={this.props.onBookButtonClick}> 도서관리 </NavItem>
                             <NavItem id = "navbar-menu" activehref="#"> 대출정보 </NavItem>
                             <li role="presentation">
                                 <form className="form-inline navbar-search">
@@ -57,20 +57,18 @@ class MainNavbar extends Component {
                             <Button bsStyle = "primary" activehref="#" id = "navbar-button"> Login </Button>
                     </Nav>
                 </Navbar>
-                <Modal show={this.state.bookModalExpanded} onHide={this.handleBookSubmitHide}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Shit!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h4>shit! fuck!</h4>
-                        <p>Redux is too difficult!</p>
-                    </Modal.Body>
-
-                </Modal>
-                
             </div>
         )
     }
 }
 
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginButtonClick: () => dispatch(buttonActions.loginClick()),
+        onBookButtonClick: () => dispatch(buttonActions.bookClick())
+    }
+}
+
+MainNavbar = connect(undefined, mapDispatchToProps) (MainNavbar);
+ 
 export default MainNavbar;

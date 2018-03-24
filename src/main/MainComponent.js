@@ -4,7 +4,10 @@ import MainJumbotron from './main-jumbo/MainJumbotron';
 import MainFooter from './MainFooter';
 import MainFeatured from './MainFeatured';
 import MainAlert from './MainAlert';
+import { Modal } from 'react-bootstrap';
 import './main.css'
+import connect from 'react-redux/lib/connect/connect';
+import * as modalCloseActions from '../reducers/actions';
 
 const Featured = function(title, category) {
 
@@ -33,7 +36,7 @@ class MainComponent extends Component {
         this.state = {
             featured : [], 
             notice : [],
-            bookModalExpanded: false,
+            bookModalExpanded: this.props.bookModalExpanded,
             loginModalExpanded: false
         }
     }
@@ -50,6 +53,11 @@ class MainComponent extends Component {
 
     componentDidMount () {
         console.log(this.state.featured);
+        console.log(this.props.bookModalExpanded);
+    }
+
+    componentWillReceiveProps (nextProps) {
+        console.log(nextProps.bookModalExpanded);
     }
 
     render() {
@@ -69,10 +77,35 @@ class MainComponent extends Component {
                 <div className="container-fluid default-footer">
                     <MainFooter/>
                 </div>
+                <Modal show={this.props.bookModalExpanded} onHide={this.props.onBookModalClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Shit!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h4>shit! fuck!</h4>
+                        <p>Redux is too difficult!</p>
+                    </Modal.Body>
+
+                </Modal>
+                
             </div>
         
         )
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        bookModalExpanded: state.bookmodal.expand
+    };
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onBookModalClose: () => dispatch(modalCloseActions.bookClose())
+    }
+}
+
+MainComponent = connect(mapStateToProps, mapDispatchToProps) (MainComponent);
 
 export default MainComponent;
