@@ -65,6 +65,10 @@ class BookModal extends Component {
                 console.log(res)
                 return res.json();
             }).then(json => {
+                if (json.items === undefined) {
+                    window.alert('검색된 도서가 없습니다!');
+                    return;
+                }
                 return json.items[0]
             }).then(item => {
                 searchedBook = item;
