@@ -3,8 +3,27 @@ import { Modal, Image, Grid, Row, Table, DropdownButton, MenuItem } from 'react-
 import './bookmodal.css';
 import BookSearchResultTable from './BookSearchResultTable';
 
-const locations = ['출입구 옆 책장', '프론트엔드 책장', '백엔드 책장'];
-const categories = ['소프트웨어공학', '자바', '스위프트', '자바스크립트'];
+var locations, categories;
+
+fetch('http://localhost:8080/api/info/categories').then(res => res.json()).then(json => categories = json);
+fetch('http://localhost:8080/api/info/locations').then(res => res.json()).then(json => locations = json)
+
+const NewBook = function(booktitle, author, description, isbn, category, location) {
+    if(!this instanceof NewBook) {
+        return new NewBook(booktitle, author, description, isbn, category, location);
+    }
+
+    this.booktitle = booktitle;
+    this.author = author;
+    this.description = description;
+    this.isbn = isbn;
+    this.category = category;
+    this.location = location;
+}
+
+NewBook.prototype.toString = function() {
+    return `${this.booktitle}, author: ${this.author}, ISBN: ${this.isbn}`;
+}
 
 class BookSearchResult extends Component {
 
@@ -18,6 +37,7 @@ class BookSearchResult extends Component {
         this.onModalHide = this.onModalHide.bind(this);
         this.onCategorySelect = this.onCategorySelect.bind(this);
         this.onLocationSelect = this.onLocationSelect.bind(this);
+        this.onSubmitClick = this.onSubmitClick.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +66,25 @@ class BookSearchResult extends Component {
         this.props.onClose();
     }
 
+    onSubmitClick() {
+        var book = new NewBook(this.props.book.title, this.props.book.author, this.props.book.description, this.props.book.isbn, 
+        this.state.selectedCategory, this.state.selectedLocation);
+
+        console.log(book);
+
+        fetch('http://localhost:8080/api/v1/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book),
+            
+        }).then(res => {
+            window.alert(`도서 정보가 저장되었습니다.`)
+            this.onModalHide()}).catch(err => console.error(err));
+
+    }
+
     render() {
         return(
             <Modal show={this.state.modalShow} onHide={this.onModalHide}>
@@ -69,10 +108,10 @@ class BookSearchResult extends Component {
                                 <div className="container-fluid">
                                     <div className="row modal-result-button-area center-block">
                                         <div className="col-md-6">
-                                            <button className="btn btn-success center-block modal-result-button">제출하기</button>
+                                            <button className="btn btn-success center-block modal-result-button" onClick={this.onSubmitClick}>제출하기</button>
                                         </div>
                                         <div className="col-md-6">
-                                            <button className="btn btn-danger center-block modal-result-button">닫아버리기</button>
+                                            <button className="btn btn-danger center-block modal-result-button" onClick={this.onModalHide}>닫아버리기</button>
                                         </div>
                                     </div>
                                 </div>

@@ -48,7 +48,6 @@ class MainComponent extends Component {
     }
 
     componentWillMount () {
-        console.log('fuck you world!')
 
         this.setState({
             featured: [new Featured('JK의 책장', 'featured-article'), new Featured('포비의 책장', 'featured-article')
