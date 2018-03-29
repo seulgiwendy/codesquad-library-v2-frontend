@@ -14,6 +14,7 @@ const TestBook = function(title, author, category, location) {
 const testBooks = [new TestBook('hi', 'fuck', 'that', 'shit'), new TestBook('hi', 'fuck', 'that', 'shit'), new TestBook('hi', 'fuck', 'that', 'shit')]
 
 const SearchResultTable = (props) => {
+    console.log(props.books)
     return(
     <Table>
         <thead>
@@ -21,27 +22,25 @@ const SearchResultTable = (props) => {
                 <th className="book-code">#</th>
                 <th className="book-title">제목(카테고리)</th>
                 <th className="book-author">저자</th>
-                <th className="book-cat">카테고리</th>
                 <th className="book-loc">위치</th>
                 <th className="book-status">정보</th>
             </tr>
         </thead>
         <tbody>
-            {testBooks.map((books, i) => {
+            {props.books.map((book, i) => {
+                console.log(book);
                 return(
                     <tr>
                         <td>{i + 1}</td>
-                        <td>{books.title} <SearchBookCategories/></td>
-                        <td>{books.author}</td>
-                        <td>{books.category}</td>
-                        <td>{books.location}</td>
+                        <td>{book.title} <SearchBookCategories category={book.category}/></td>
+                        <td>{book.author.name}</td>
+                        <td>{book.location}</td>
                         <td>
-                            <SearchBookStatus icons={['ok', 'remove', 'align-justify']} description='hello'/>
+                            <SearchBookStatus statuses={book.status}/>
                         </td>
                     </tr>
                 )
-            })}
-            
+            })} 
         </tbody>
     </Table>
     )

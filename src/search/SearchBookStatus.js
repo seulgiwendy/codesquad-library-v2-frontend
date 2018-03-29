@@ -3,18 +3,20 @@ import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import './search.css';
 
 const SearchBookStatus = (props) => {
+    console.log(props.statuses);
     return(
         <div>
-            {props.icons.map(icons => {
+            {props.statuses.map(status => {
+                console.log(status);
                 let description = (
                     <Tooltip id="description">
-                        <strong>{props.description}</strong>
+                        <strong>{status.code}</strong>
                     </Tooltip>
                 );
                 return (
                 <span className="searchresult-table-glyphs">
                     <OverlayTrigger placement="top" overlay={description}>
-                        <Glyphicon glyph={icons}/>
+                        <Glyphicon glyph={status.glyphicons}/>
                     </OverlayTrigger>
                 </span>
                 )

@@ -38,7 +38,7 @@ const BookSearchResultTable = (props) => {
                         <DropdownButton title={props.selectedCategory} className="locations-dropdown" onSelect={props.categorySelector}>
                             {props.categories.map((cat, i) => {
                                 return(
-                                    <MenuItem eventKey={cat}>{`${i}. ${cat}`}</MenuItem>
+                                    <MenuItem eventKey={cat.category}>{`${i}. ${cat.category}`}</MenuItem>
                                 )
                             })}
                         </DropdownButton>
