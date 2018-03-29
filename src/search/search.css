@@ -12,3 +12,40 @@
     height: calc(100vh - 150px);
 }
 
+.searchresult-body {
+    margin-top: 5%;
+}
+
+.searchresult-category {
+    margin-left: 5px;
+}
+
+.searchresult-table {
+    width: 80%;
+    margin-top: 3%;
+}
+
+.searchresult-table-glyphs {
+    margin: 0 5px;
+}
+
+
+th.book-code {
+    width: 10%;
+}
+
+th.book-title {
+    width: 20%;
+}
+
+th.book-author {
+    width: 20%;
+}
+
+th.book-loc {
+    width: 15%;
+}
+
+th.book-cat {
+    width: 15%;
+}

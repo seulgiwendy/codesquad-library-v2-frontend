@@ -1,13 +1,14 @@
 .navbar-default {
     background-color: black;
     margin: 0;
+    height: 50px;
     }
 .navbar-letter {
     color: cyan;
 }
   
 .main-jumbo {
-    padding-top: 120px;
+    padding-top: 70px;
     padding-left: 30px;
     }
   

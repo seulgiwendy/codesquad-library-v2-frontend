@@ -11,6 +11,7 @@ import './main.css'
 import connect from 'react-redux/lib/connect/connect';
 import * as modalCloseActions from '../reducers/actions';
 
+
 const Featured = function(title, category) {
 
     if(!this instanceof Featured) {
@@ -32,7 +33,6 @@ const Notice = function(headline, color) {
 }
 
 
-
 class MainComponent extends Component {
 
     constructor(props) {
@@ -40,11 +40,13 @@ class MainComponent extends Component {
         this.state = {
             featured : [], 
             notice : [],
+            new_notice: [],
+            new_featured: [],
             newBookIsbn: 0,
             bookModalExpanded: this.props.bookModalExpanded,
             loginModalExpanded: false
         }
-
+        this._setNotices = this._setNotices.bind(this);
     }
 
     componentWillMount () {
@@ -55,12 +57,42 @@ class MainComponent extends Component {
             notice: [new Notice('독서하기 좋은 계절입니다. <strong>책을 읽읍시다!</strong>', "warning")]
         })
     }
-    
 
     componentDidMount () {
-        console.log(this.state.featured);
-        console.log(this.props.bookModalExpanded);
+        this._setNotices();
     }
+
+    _setNotices = async () => {
+        const notices = await this._fetchNotices();
+
+        console.log(notices);
+        this.setState({
+            new_notice: notices
+        });
+    }
+
+    _setFeatured = async () => {
+        const featured = await this._fetchFeatured();
+
+        console.log(featured);
+        this.setState({
+            new_featured: featured
+        });
+    }
+
+    _fetchFeatured = () => {
+        return fetch('http://localhost:8080/api/info/featured')
+            .then(res => res.json())
+            .catch(err => console.error(err));
+            
+    }
+
+    _fetchNotices = () => {
+        return fetch('http://localhost:8080/api/info/article')
+        .then(res => res.json())
+        .catch(err => console.error(err));
+    }
+    
 
     componentWillReceiveProps (nextProps) {
         console.log(nextProps.bookModalExpanded);
@@ -79,7 +111,7 @@ class MainComponent extends Component {
                     </div>
                 </div>
                 <MainFeatured featured={this.state.featured}/>
-                <MainAlert alerts={this.state.notice}/>
+                <MainAlert alerts={this.state.new_notice}/>
                 <div className="container-fluid default-footer">
                     <MainFooter/>
                 </div>

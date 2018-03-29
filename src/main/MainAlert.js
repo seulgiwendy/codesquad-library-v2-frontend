@@ -9,8 +9,8 @@ class MainAlert extends Component {
             <div className="main-body-bottom">
                 {this.props.alerts.map(alert => {
                     return(
-                        <Alert bsStyle={alert.color}>
-                            {alert.headline}
+                        <Alert bsStyle="warning">
+                            {alert.title}
                         </Alert>
                     )
                 })}
