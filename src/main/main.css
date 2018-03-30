@@ -6,6 +6,10 @@
 .navbar-letter {
     color: cyan;
 }
+
+a.navbar-logo {
+    color: rgb(116, 179, 238);
+}
   
 .main-jumbo {
     padding-top: 70px;

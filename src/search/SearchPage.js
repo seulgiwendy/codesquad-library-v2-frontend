@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import './search.css';
 import MainNavbar from '../main/main-navbar/MainNavbar';
 import MainFooter from '../main/MainFooter';
+import { Redirect } from 'react-router-dom';
 import { FormGroup, InputGroup, FormControl, DropdownButton, MenuItem } from 'react-bootstrap';
-
-const bookCount = 10000;
-const criteria = ['제목', '저자', 'ISBN'];
 
 class SearchPage extends Component {
 
@@ -13,26 +11,64 @@ class SearchPage extends Component {
         super(props);
         this.state = {
             bookCount: 0,
-            currentCategory: criteria[0]
+            criteria:[],
+            currentCategory: undefined,
+            currentCriteria: undefined,
+            redirect: undefined
         }
         this.handleCriteriaButtonToggle = this.handleCriteriaButtonToggle.bind(this);
+        this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
+        this._setCriteria = this._setCriteria.bind(this);
+    }
+
+    componentWillMount() {
+        console.log(this.state.currentCategory);
+        
     }
 
     componentDidMount() {
-        console.log(this.state.currentCategory);
-        this.setState({
-            bookCount: 10000,
-        })
+        this._setCriteria()
     }
+
+   _setCriteria = async () => {
+        const info = await this._fetchCriteria();
+
+        console.log(info);
+        this.setState({
+            bookCount: info.bookCount,
+            criteria: info.criteria,
+            currentCategory: info.criteria[0].canonicalCategory,
+            currentCriteria: info.criteria[0].criteria
+        });
+   }
+
+   _fetchCriteria() {
+        return fetch('http://localhost:8080/api/test/search').then(res => res.json()).catch(err => console.error(err));
+   }
 
     handleCriteriaButtonToggle(event) {
         console.log(event);
         this.setState({
-            currentCategory: event
+            currentCategory: this.state.criteria[event].canonicalCategory,
+            currentCriteria: this.state.criteria[event].criteria
         })
     }
 
+    handleSearchButtonClick(event) {
+        let query = document.getElementById('search-query').value;
+        
+        console.log(query);
+        this.setState({
+            redirect: <Redirect to={`/search/result/?criteria=${this.state.currentCriteria}&query=${query}`}/>
+        });
+    }
+
     render() {
+        if(this.state.redirect != undefined) {
+            console.log('shit!');
+            return(this.state.redirect);
+        }
+
         return(
             <div className="main-search">
                 <MainNavbar/>
@@ -45,17 +81,18 @@ class SearchPage extends Component {
                         <div className="search-box center-block">
                             <FormGroup className="search-box search-form center-block">
                                 <InputGroup>
-                                    <FormControl type="text"/>
+                                    <FormControl type="text" id="search-query"/>
                                     <DropdownButton componentClass={InputGroup.Button} id="input-dropdown-addon" title={this.state.currentCategory} onSelect={this.handleCriteriaButtonToggle}>
-                                        {criteria.map((content, i) => {
+                                        {this.state.criteria.map((content, i) => {
                                             return(
-                                                <MenuItem eventKey={content}>{content}</MenuItem>  
+                                                <MenuItem eventKey={i}>{content.canonicalCategory}</MenuItem>  
                                             )
                                         })}
                                     </DropdownButton> 
                                 </InputGroup>
                             </FormGroup>
                         </div>
+                        <button className="btn btn-success center-block" onClick={this.handleSearchButtonClick}>검색하기</button>
                     </div>
                 </div>
                 <div className="container-fluid default-footer">

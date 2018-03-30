@@ -1,6 +1,6 @@
 import '../main.css';
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {Nav, Navbar, NavItem, Button,  Glyphicon, Modal, } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as buttonActions from '../../reducers/actions'
@@ -12,7 +12,8 @@ class MainNavbar extends Component {
         super(props)
         this.state = {
             loginModalExpanded: false,
-            bookModalExpanded: false
+            bookModalExpanded: false,
+            search: undefined
         };
     }
 
@@ -30,14 +31,23 @@ class MainNavbar extends Component {
         })
     }
 
+    handleSearchButtonClick = event => {
+        let query = document.getElementById("navbar-search-query").value;
+        this.setState({
+            search: <Redirect to={`/search/result/?criteria=TITLE&query=${query}`}/>
+        });
+    }
+
     render() {
+        if(this.state.search != undefined) {
+            return(this.state.search)
+        }
         return(
             <div className="navbar-default">
-            
             <Navbar className="navbar-default" fixedTop={true}>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <strong id="navbar-title">Codesquad Library</strong>
+                            <strong id="navbar-title"><Link className='navbar-logo'to='/'>Codesquad Library</Link></strong>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav className="navbar-letter">
@@ -46,8 +56,8 @@ class MainNavbar extends Component {
                             <NavItem id = "navbar-menu" activehref="#"> 대출정보 </NavItem>
                             <li role="presentation">
                                 <form className="form-inline navbar-search">
-                                    <input className="form-control mr-sm-2 search-area" type="search" placeholder="제목으로 검색..." aria-label="search"/>
-                                    <button className="btn btn-default my-2 my-sm-0 search-button" type="submit"><Glyphicon glyph="search"/></button>
+                                    <input className="form-control mr-sm-2 search-area" type="search" placeholder="제목으로 검색..." aria-label="search" id="navbar-search-query"/>
+                                    <button className="btn btn-default my-2 my-sm-0 search-button" type="submit" onClick={this.handleSearchButtonClick}><Glyphicon glyph="search"/></button>
                                 </form>
                             </li>
                     </Nav>
