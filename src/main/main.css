@@ -1,13 +1,18 @@
 .navbar-default {
     background-color: black;
     margin: 0;
+    height: 50px;
     }
 .navbar-letter {
     color: cyan;
 }
+
+a.navbar-logo {
+    color: rgb(116, 179, 238);
+}
   
 .main-jumbo {
-    padding-top: 120px;
+    padding-top: 70px;
     padding-left: 30px;
     }
   
@@ -99,3 +104,11 @@
     height: 20px;
     padding: 0 10px;
 }
+
+.modal-open[style] {
+    padding-right: 0px !important;
+  }
+
+  .modal-body-isbnform {
+      width: 60%;
+  }
