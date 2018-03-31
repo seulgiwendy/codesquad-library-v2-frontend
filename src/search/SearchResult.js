@@ -5,7 +5,7 @@ import './search.css';
 import SearchResultTable from './SearchResultTable';
 import { withRouter } from 'react-router-dom';
 
-const queryString = require('query-string');
+const queryString = require('querystring');
 
 const QueryDocument = function(criteria, query) {
     if(!this instanceof QueryDocument) {
@@ -44,7 +44,11 @@ class SearchResult extends Component {
     }
 
     __fetchSearchResult() {
-        const queryParams = queryString.parse(this.props.location.search);
+
+        const location = this.props.location.search.split("?")
+        console.log(location);
+
+        const queryParams = queryString.parse(location[1]);
         console.log(queryParams);
         let searchDocument = new QueryDocument(queryParams.criteria, queryParams.query);
 
