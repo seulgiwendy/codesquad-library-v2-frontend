@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Glyphicon } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import './search.css';
 import SearchBookStatus from './SearchBookStatus';
 import SearchBookCategories from './SearchBookCategories';
@@ -10,8 +10,6 @@ const TestBook = function(title, author, category, location) {
     this.category = category;
     this.location = location;
 }
-
-const testBooks = [new TestBook('hi', 'fuck', 'that', 'shit'), new TestBook('hi', 'fuck', 'that', 'shit'), new TestBook('hi', 'fuck', 'that', 'shit')]
 
 const SearchResultTable = (props) => {
     console.log(props.books)
