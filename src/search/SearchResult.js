@@ -3,8 +3,9 @@ import MainNavbar from '../main/main-navbar/MainNavbar';
 import MainFooter from '../main/MainFooter';
 import './search.css';
 import SearchResultTable from './SearchResultTable';
-import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
+
+const queryString = require('query-string');
 
 const QueryDocument = function(criteria, query) {
     if(!this instanceof QueryDocument) {
