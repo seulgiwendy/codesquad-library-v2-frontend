@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Glyphicon} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './main.css';
 

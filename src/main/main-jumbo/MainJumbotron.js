@@ -8,7 +8,7 @@ class MainJumbotron extends Component {
             <div>
                 <Jumbotron className = "main-jumbo">
                     <span >
-                        <img className = "jumbo-img center-block" src="http://codesquad.kr/img/company/codesquad2.png" width="10%" height="10%"/>
+                        <img className = "jumbo-img center-block" alt="코드스쿼드" src="http://codesquad.kr/img/company/codesquad2.png" width="10%" height="10%"/>
                     </span>
                     <p className = "text-center">
                         코드스쿼드의 도서 관리와 대여를 위한 페이지입니다. 책을 많이 읽읍시다.

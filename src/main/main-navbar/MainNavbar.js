@@ -1,7 +1,7 @@
 import '../main.css';
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import {Nav, Navbar, NavItem, Button,  Glyphicon, Modal, } from 'react-bootstrap';
+import {Nav, Navbar, NavItem, Button,  Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as buttonActions from '../../reducers/actions'
 
@@ -39,7 +39,7 @@ class MainNavbar extends Component {
     }
 
     render() {
-        if(this.state.search != undefined) {
+        if(this.state.search !== undefined) {
             return(this.state.search)
         }
         return(

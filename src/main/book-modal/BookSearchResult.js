@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Image, Grid, Row, Table, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Modal, Image } from 'react-bootstrap';
 import './bookmodal.css';
 import BookSearchResultTable from './BookSearchResultTable';
 
