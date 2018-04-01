@@ -43,7 +43,7 @@ class SearchPage extends Component {
    }
 
    _fetchCriteria() {
-        return fetch('http://localhost:8080/api/test/search').then(res => res.json()).catch(err => console.error(err));
+        return fetch('http://library-api.wheejuni.com/api/test/search').then(res => res.json()).catch(err => console.error(err));
    }
 
     handleCriteriaButtonToggle(event) {
@@ -71,9 +71,9 @@ class SearchPage extends Component {
 
         return(
             <div className="main-search">
-                <MainNavbar/>
-                <div className="main-search search-component">
-                    <div className="main-search search-view">
+                
+                <div className="search-component">
+                    <div className="search-view">
                         <h1 className="text-center">검색하기</h1>
                         <p className="text-center">코드스쿼드의 수많은 책들을 검색해보세요. 현재 {this.state.bookCount}권의 책이 준비되어 있습니다.</p>
                     </div>
@@ -95,9 +95,7 @@ class SearchPage extends Component {
                         <button className="btn btn-success center-block" onClick={this.handleSearchButtonClick}>검색하기</button>
                     </div>
                 </div>
-                <div className="container-fluid default-footer">
-                    <MainFooter/>
-                </div>
+                
             </div>
             
         )

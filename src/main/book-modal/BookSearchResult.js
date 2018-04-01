@@ -5,8 +5,8 @@ import BookSearchResultTable from './BookSearchResultTable';
 
 var locations, categories;
 
-fetch('http://localhost:8080/api/info/categories').then(res => res.json()).then(json => categories = json);
-fetch('http://localhost:8080/api/info/locations').then(res => res.json()).then(json => locations = json)
+fetch('http://library-api.wheejuni.com/api/info/categories').then(res => res.json()).then(json => categories = json);
+fetch('http://library-api.wheejuni.com/api/info/locations').then(res => res.json()).then(json => locations = json)
 
 const NewBook = function(booktitle, author, description, isbn, category, location) {
     if(!this instanceof NewBook) {
@@ -72,7 +72,7 @@ class BookSearchResult extends Component {
 
         console.log(book);
 
-        fetch('http://localhost:8080/api/v1/book', {
+        fetch('http://library-api.wheejuni.com/api/v1/book', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
