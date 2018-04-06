@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './search.css';
 import SearchBookStatus from './SearchBookStatus';
 import SearchBookCategories from './SearchBookCategories';
@@ -21,7 +22,7 @@ const SearchResultTable = (props) => {
                 <th className="book-title">제목(카테고리)</th>
                 <th className="book-author">저자</th>
                 <th className="book-loc">위치</th>
-                <th className="book-status">정보</th>
+                <th className="book-status">대여정보</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +31,7 @@ const SearchResultTable = (props) => {
                 return(
                     <tr>
                         <td>{i + 1}</td>
-                        <td>{book.title} <SearchBookCategories category={book.category}/></td>
+                        <td><Link to={`/books/${book.bookId}`}>{book.title}</Link>&nbsp;<SearchBookCategories category={book.category}/></td>
                         <td>{book.author.name}</td>
                         <td>{book.location}</td>
                         <td>

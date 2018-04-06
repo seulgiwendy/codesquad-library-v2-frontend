@@ -1,0 +1,10 @@
+.splash-main {
+    margin-top: calc(50vh - 100px);
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+.splash-spinner {
+    display: inline-block;
+}

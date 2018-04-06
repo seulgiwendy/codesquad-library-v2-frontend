@@ -7,6 +7,7 @@ import './main/main.css';
 import MainNavbar from './main/main-navbar/MainNavbar';
 import MainFooter from './main/MainFooter';
 import BookDetailsPage from './books/BookDetailsPage';
+import FeaturedPage from './featured/FeaturedPage';
 
 class Router extends Component {
     render() {
@@ -18,6 +19,7 @@ class Router extends Component {
                     <Route exact path="/search" component={SearchPage}/>
                     <Route exact path="/search/result" component={SearchResult}/>
                     <Route path="/books/:id" component={BookDetailsPage}/>
+                    <Route path="/featured/:name" component={FeaturedPage}/>
                 </div>
             </div>
         )

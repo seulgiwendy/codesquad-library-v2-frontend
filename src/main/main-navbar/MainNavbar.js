@@ -54,12 +54,12 @@ class MainNavbar extends Component {
                             <NavItem id = "navbar-menu"> <Link to={'/search'} id="navbar-menu">도서검색 </Link></NavItem>
                             <NavItem id = "navbar-menu" activehref="#" onClick={this.props.onBookButtonClick}> 도서관리 </NavItem>
                             <NavItem id = "navbar-menu" activehref="#"> 대출정보 </NavItem>
-                            <li role="presentation">
+                            {/* <li role="presentation">
                                 <form className="form-inline navbar-search">
                                     <input className="form-control mr-sm-2 search-area" type="search" placeholder="제목으로 검색..." aria-label="search" id="navbar-search-query"/>
                                     <button className="btn btn-default my-2 my-sm-0 search-button" type="submit" onClick={this.handleSearchButtonClick}><Glyphicon glyph="search"/></button>
                                 </form>
-                            </li>
+                            </li> */}
                     </Nav>
                     
                     
