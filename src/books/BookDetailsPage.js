@@ -15,7 +15,7 @@ import BookTags from './BookTags';
 const suggestions = ['자바', '자바스크립트', '스위프트', '초급자용', '중급자용'];
 const tags = [{text: 'Java'}, {text: 'JavaScript'}];
 
-const TEMP_URL = "http://localhost:8080/api/test/books/";
+const TEMP_URL = "http://library-api.wheejuni.com/api/test/books/";
 
 
 class BookDetailsPage extends Component {

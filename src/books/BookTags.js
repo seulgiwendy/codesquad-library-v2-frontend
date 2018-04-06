@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { WithContext as ReactTags} from 'react-tag-input';
 
-const TEMP_TAGURL = 'http://localhost:8080/api/test/tags';
+const TEMP_TAGURL = 'http://library-api.wheejuni.com/api/test/tags';
 
 const DisplayTags = function(text, index) {
     if(!this instanceof DisplayTags) {
