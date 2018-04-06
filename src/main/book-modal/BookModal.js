@@ -75,7 +75,7 @@ class BookModal extends Component {
                 this.setState({
                     targetBook: searchedBook
                 }, () => this.handleSearchedBook());
-            });
+            }).catch(err => console.error(err));
 
         }
     }

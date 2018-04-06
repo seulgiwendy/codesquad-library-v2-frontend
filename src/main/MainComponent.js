@@ -81,14 +81,14 @@ class MainComponent extends Component {
     }
 
     _fetchFeatured = () => {
-        return fetch('http://localhost:8080/api/info/featured')
+        return fetch('http://library-api.wheejuni.com/api/info/featured')
             .then(res => res.json())
             .catch(err => console.error(err));
             
     }
 
     _fetchNotices = () => {
-        return fetch('http://localhost:8080/api/info/article')
+        return fetch('http://library-api.wheejuni.com/api/info/article')
         .then(res => res.json())
         .catch(err => console.error(err));
     }
@@ -101,7 +101,6 @@ class MainComponent extends Component {
     render() {
         return (
             <div className="main">
-                <MainNavbar/>
                 <div className="main-body">
                     <MainJumbotron/>
                     <br/>
@@ -110,11 +109,8 @@ class MainComponent extends Component {
                         <h3 className="main-text">여러분의 개발을 도와주는 많은 책들이 준비되어 있습니다.</h3>
                     </div>
                 </div>
-                <MainFeatured featured={this.state.featured}/>
                 <MainAlert alerts={this.state.new_notice}/>
-                <div className="container-fluid default-footer">
-                    <MainFooter/>
-                </div>
+                
                 <BookModal bookModalExpanded={this.props.bookModalExpanded} onBookModalClose={this.props.onBookModalClose}/>
             </div>
         )

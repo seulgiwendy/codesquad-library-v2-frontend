@@ -1,0 +1,48 @@
+.featured-jumbotron {
+    background-color: white;
+    padding-top: 0;
+}
+
+.featured-jumbotron-contents {
+    margin-top: 50px;    
+}
+
+.featured-jumbotron-text {
+    font-family: 'Nanum Myeongjo', serif;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.featured-thumbs {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.featured-thumbs-tags {
+    margin-top: 19px;
+    align-content: flex-start;
+}
+
+.featured-thumbs-text-bottom {
+    font-style: italic;
+}
+
+.featured-thumbs-tagicon {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.featured-thumbs-tagtext {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.featured-thumbs-content {
+    width: 200px;
+    height: 200px;
+}
+
+.featured-thumbs-content-wrapper {
+    margin-top: 30px;
+    margin-right: 20px;
+}

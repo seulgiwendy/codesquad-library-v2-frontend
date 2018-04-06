@@ -71,16 +71,19 @@ a.navbar-logo {
 .default-footer {
     width: 100%;
     height: 100px;
-    margin-top: 50px;
+    padding: 20px 20px;
     
     background-color: silver;
+    
+    clear: both;
+    position: relative;
+    z-index: 10;
+    margin-top: 100px;
 
 }
 
 .footer-content {
     border: white;
-    margin: 20px 20px;
- 
 }
 
 #footer-mail {
