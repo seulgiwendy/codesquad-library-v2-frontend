@@ -63,7 +63,7 @@ class MainComponent extends Component {
     }
 
     _setNotices = async () => {
-        const notices = await this._fetchNotices();
+        const notices = await this._fetchNotices(); 
 
         console.log(notices);
         this.setState({
