@@ -18,7 +18,7 @@ class SearchPage extends Component {
         }
         this.handleCriteriaButtonToggle = this.handleCriteriaButtonToggle.bind(this);
         this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
-        this._setCriteria = this._setCriteria.bind(this);
+        this._setCriteria = this._setCriteria.bind(this); 
     }
 
     componentWillMount() {
