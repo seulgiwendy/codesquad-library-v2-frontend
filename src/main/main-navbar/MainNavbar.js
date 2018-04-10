@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {Nav, Navbar, NavItem, Button,  Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as buttonActions from '../../reducers/actions'
+import BookModal from '../book-modal/BookModal';
+import * as buttonActions from '../../reducers/actions';
+import * as modalCloseActions from '../../reducers/actions';
 
 
 class MainNavbar extends Component {
@@ -44,7 +46,7 @@ class MainNavbar extends Component {
         }
         return(
             <div className="navbar-default">
-            <Navbar className="navbar-default" fixedTop={true}>
+                <Navbar className="navbar-default" fixedTop={true}>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <strong id="navbar-title"><Link className='navbar-logo'to='/'>Codesquad Library</Link></strong>
@@ -67,18 +69,26 @@ class MainNavbar extends Component {
                             <Button bsStyle = "primary" activehref="#" id = "navbar-button"> Login </Button>
                     </Nav>
                 </Navbar>
+                <BookModal bookModalExpanded={this.props.bookModalExpanded} onBookModalClose={this.props.onBookModalClose}/>
             </div>
         )
     }
 }
 
+let mapStateToProps = (state) => {
+    return {
+        bookModalExpanded: state.bookmodal.expand
+    };
+}
+
 let mapDispatchToProps = (dispatch) => {
     return {
         onLoginButtonClick: () => dispatch(buttonActions.loginClick()),
-        onBookButtonClick: () => dispatch(buttonActions.bookClick())
+        onBookButtonClick: () => dispatch(buttonActions.bookClick()),
+        onBookModalClose: () => dispatch(modalCloseActions.bookClose())
     }
 }
 
-MainNavbar = connect(undefined, mapDispatchToProps) (MainNavbar);
+MainNavbar = connect(mapStateToProps, mapDispatchToProps) (MainNavbar);
  
 export default MainNavbar;

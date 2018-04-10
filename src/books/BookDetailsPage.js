@@ -11,6 +11,7 @@ import LoadingScreen from '../loading/LoadingScreen';
 import { setTimeout } from 'timers';
 import BookFeaturedLink from './BookFeaturedLink';
 import BookTags from './BookTags';
+import BookDetailsTable from './BookDetailsTable';
 
 const suggestions = ['자바', '자바스크립트', '스위프트', '초급자용', '중급자용'];
 const tags = [{text: 'Java'}, {text: 'JavaScript'}];
@@ -105,31 +106,7 @@ class BookDetailsPage extends Component {
                             </div>
                         </div>
                         <div className="col-md-10">
-                            <Table striped bordered condensed hover>
-                            <tbody>
-                                <tr>
-                                    <td>저자 </td>
-                                    <td>{this.state.book.author.name}</td>
-                                </tr>
-                                <tr>
-                                    <td>장서번호 </td>
-                                    <td>{this.state.book.bookId}</td>
-                                </tr>
-                                
-                                <tr>
-                                    <td>카테고리</td>
-                                    <td>{this.state.book.category.category}&nbsp;<span className={this.state.book.category.iconTag}/></td>
-                                </tr>
-                                <tr>
-                                    <td>위치</td>
-                                    <td>백엔드 쪽 책장</td>
-                                </tr>
-                                <tr>
-                                    <td>대여</td>
-                                    <td>{this.state.book.status[0].code}</td>
-                                </tr>
-                            </tbody>
-                            </Table>
+                            <BookDetailsTable book={this.state.book}/>
                         </div>
                     </div>
                 </div>
