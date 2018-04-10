@@ -18,12 +18,19 @@ class SearchPage extends Component {
         }
         this.handleCriteriaButtonToggle = this.handleCriteriaButtonToggle.bind(this);
         this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
+        this.handleEnterButtonPress = this.handleEnterButtonPress.bind(this);
         this._setCriteria = this._setCriteria.bind(this);
+
     }
 
     componentWillMount() {
         console.log(this.state.currentCategory);
+        document.addEventListener("keydown", this.handleEnterButtonPress, false)
         
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleEnterButtonPress, false);
     }
 
     componentDidMount() {
@@ -54,10 +61,20 @@ class SearchPage extends Component {
         })
     }
 
+    handleEnterButtonPress(event) {
+        console.log(event);
+        if(event.key !== 'Enter') {
+            return;
+        }
+        this.handleSearchButtonClick();
+    }
+
     handleSearchButtonClick(event) {
-        let query = document.getElementById('search-query').value;
-        
-        console.log(query);
+        if(document.getElementById('search-query') === null) {
+            window.alert('검색어가 입력되지 않았습니다.')
+            return;
+        }
+        let query = document.getElementById('search-query').value;    
         this.setState({
             redirect: <Redirect to={`/search/result/?criteria=${this.state.currentCriteria}&query=${query}`}/>
         });
@@ -65,7 +82,6 @@ class SearchPage extends Component {
 
     render() {
         if(this.state.redirect != undefined) {
-            console.log('shit!');
             return(this.state.redirect);
         }
 
@@ -102,8 +118,5 @@ class SearchPage extends Component {
     }
 }
 
-const searchRequest = (keyword, criteria) => {
-
-}
 
 export default SearchPage;

@@ -36,23 +36,15 @@ class SearchResult extends Component {
 
     __setSearchResult = async () => {
         const results = await this.__fetchSearchResult();
-
-        console.log(results);
         this.setState({
             searchresult: results
         });
     }
 
     __fetchSearchResult() {
-
         const location = this.props.location.search.split("?")
-        console.log(location);
-
         const queryParams = queryString.parse(location[1]);
-        console.log(queryParams);
         let searchDocument = new QueryDocument(queryParams.criteria, queryParams.query);
-
-        console.log(searchDocument);
 
         return fetch('http://library-api.wheejuni.com/api/test/search', {
             body: JSON.stringify(searchDocument),
@@ -63,10 +55,8 @@ class SearchResult extends Component {
         }).then(res => res.json()).catch(err => window.alert(err));
     }
     render() {
-        console.log(this.state.searchresult);
         return(
             <div className="main-search">
-                
                 <div className="main-search search-component searchresult-body">
                     <h3 className="text-center searchresult-title">검색 결과</h3>
                     <div className="container-fluid searchresult-table">
