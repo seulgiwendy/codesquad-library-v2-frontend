@@ -25,7 +25,7 @@ class SearchResult extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchresult: []
+            searchresult: [] 
         }
         this.__setSearchResult = this.__setSearchResult.bind(this);
     }
