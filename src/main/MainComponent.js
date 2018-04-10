@@ -109,26 +109,10 @@ class MainComponent extends Component {
                         <h3 className="main-text">여러분의 개발을 도와주는 많은 책들이 준비되어 있습니다.</h3>
                     </div>
                 </div>
-                <MainAlert alerts={this.state.new_notice}/>
-                
-                <BookModal bookModalExpanded={this.props.bookModalExpanded} onBookModalClose={this.props.onBookModalClose}/>
+                <MainAlert alerts={this.state.new_notice}/>                
             </div>
         )
     }
 }
-
-let mapStateToProps = (state) => {
-    return {
-        bookModalExpanded: state.bookmodal.expand
-    };
-}
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onBookModalClose: () => dispatch(modalCloseActions.bookClose())
-    }
-}
-
-MainComponent = connect(mapStateToProps, mapDispatchToProps) (MainComponent);
 
 export default MainComponent;
