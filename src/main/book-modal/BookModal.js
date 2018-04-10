@@ -102,7 +102,7 @@ class BookModal extends Component {
                                 <span className="input-group-btn">
                                     <button className="btn btn-default" onClick={this.bookModalOnSubmit}>제출</button>
                                 </span>
-                            </InputGroup>
+                            </InputGroup> 
                         </FormGroup>
                     </Modal.Body>
                 </Modal>
