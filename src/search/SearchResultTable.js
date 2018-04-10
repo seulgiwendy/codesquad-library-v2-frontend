@@ -13,7 +13,6 @@ const TestBook = function(title, author, category, location) {
 }
 
 const SearchResultTable = (props) => {
-    console.log(props.books)
     return(
     <Table>
         <thead>
@@ -27,7 +26,6 @@ const SearchResultTable = (props) => {
         </thead>
         <tbody>
             {props.books.map((book, i) => {
-                console.log(book);
                 return(
                     <tr>
                         <td>{i + 1}</td>
