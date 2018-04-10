@@ -18,6 +18,7 @@ class SearchPage extends Component {
         }
         this.handleCriteriaButtonToggle = this.handleCriteriaButtonToggle.bind(this);
         this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
+        this.handleEnterButtonPress = this.handleEnterButtonPress.bind(this);
         this._setCriteria = this._setCriteria.bind(this);
     }
 
@@ -52,6 +53,11 @@ class SearchPage extends Component {
             currentCategory: this.state.criteria[event].canonicalCategory,
             currentCriteria: this.state.criteria[event].criteria
         })
+    }
+
+    handleEnterButtonPress(event) {
+        console.log(event);
+        handleSearchButtonClick(event);
     }
 
     handleSearchButtonClick(event) {
