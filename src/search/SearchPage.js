@@ -66,7 +66,7 @@ class SearchPage extends Component {
         if(event.key !== 'Enter') {
             return;
         }
-        // this.handleSearchButtonClick();
+        this.handleSearchButtonClick();
     }
 
     handleSearchButtonClick(event) {
@@ -74,9 +74,7 @@ class SearchPage extends Component {
             window.alert('검색어가 입력되지 않았습니다.')
             return;
         }
-        let query = document.getElementById('search-query').value;
-    
-        console.log(query);
+        let query = document.getElementById('search-query').value;    
         this.setState({
             redirect: <Redirect to={`/search/result/?criteria=${this.state.currentCriteria}&query=${query}`}/>
         });
@@ -84,7 +82,6 @@ class SearchPage extends Component {
 
     render() {
         if(this.state.redirect != undefined) {
-            console.log('shit!');
             return(this.state.redirect);
         }
 
