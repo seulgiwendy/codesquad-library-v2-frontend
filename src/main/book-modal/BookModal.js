@@ -82,7 +82,7 @@ class BookModal extends Component {
 
     render() {
         if(this.state.isSearched) {
-            let book = this.state.targetBook;
+            let book = this.state.targetBook; 
 
             this.reset();
             return(<BookSearchResult modalShow={true} book={book} onClose={this.props.onBookModalClose}/>) 
