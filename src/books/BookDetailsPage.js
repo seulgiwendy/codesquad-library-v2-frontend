@@ -122,7 +122,7 @@ class BookDetailsPage extends Component {
                     </div>
                     <div className="col-md-3">
                         <div><strong><span className="glyphicon glyphicon-star"/>RATINGS: {this.state.book.averageRating}</strong></div>
-                        <ReactStars count={5} size={20} value={this.state.book.averageRating}/>
+                        <ReactStars count={5} size={20} value={this.state.book.averageRating} edit={false}/>
                     </div>
                 </div>
                 </div>
